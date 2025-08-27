@@ -1,0 +1,40 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.107'
+    id 'java'
+}
+
+group = 'com.ocle_42.fastslot'
+version = '1.0.0'
+archivesBaseName = 'fastslot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+neoForge {
+    version = "21.1.200"
+    runs {
+        client { client() }
+        server { server() }
+        data { data() }
+    }
+    mods {
+        fastslot {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
